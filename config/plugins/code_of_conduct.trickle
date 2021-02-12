@@ -16,3 +16,11 @@ select guild::add_remove_roles(event.RemoveReaction, [c::not_accepted_role()], [
     default => false
   end
 into out;
+
+# Add roles to new members to the not accepted roles
+select guild::add_roles({"guild_id": event.`MemberAddition`.guild_id, "user_id": event.`MemberAddition`.new_member.user.id}, [c::not_accepted_role()]) from in where
+  match event of
+  case %{present MemberAddition} => true
+    default => false
+  end
+into out;
