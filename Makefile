@@ -2,7 +2,7 @@ TREMOR ?= tremor
 TREMOR_PATH := ${PWD}/lib:${TREMOR_PATH}
 
 run:
-	TREMOR_PATH="$(TREMOR_PATH)" $(TREMOR) server run -f config/plugins/*.trickle config/*.trickle config/*.yaml
+	TREMOR_PATH="$(TREMOR_PATH)" $(TREMOR) server run --no-api -f config/plugins/*.trickle config/*.trickle config/*.yaml
 
 init:
 	@[ -f lib/config.tremor ] && echo "Config file already exists" || echo "Preparing config file: lib/config.tremor"
