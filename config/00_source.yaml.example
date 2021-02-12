@@ -1,0 +1,25 @@
+---
+onramp:
+  - id: discord
+    type: discord
+    linked: true
+    config:
+      token: "<INSERT YOUR BOT TOKEN HERE>"
+      intents: [
+          "Guilds",
+          "GuildMembers",
+          # "GuildBans",
+          # "GuildEmojis",
+          # "GuildIntegrations",
+          # "GuildWebHooks",
+          # "GuildInvites",
+          # "GuildVoiceStates",
+          "GuildMessages",
+          "GuildMessageReactions",
+          # "GuildMessageTyping",
+          # "DirectMessages",
+          # "DirectMessageReactions",
+          # "DirectMessageTyping",
+          # "NonPrivileged",
+          # "All"
+        ]

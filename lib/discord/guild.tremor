@@ -1,0 +1,37 @@
+fn add_roles(e, roles) with
+  {
+    "guild": {
+      "id": e.guild_id,
+      "member": {
+        "id": e.user_id,
+        "add_roles": roles,
+      }
+    }
+  }
+end;
+
+fn remove_roles(e, roles) with
+  {
+    "guild": {
+      "id": e.guild_id,
+      "member": {
+        "id": e.user_id,
+        "remove_roles": roles,
+      }
+    }
+  }
+end;
+
+fn add_remove_roles(e, add, remove) with
+  {
+    "guild": {
+      "id": e.guild_id,
+      "member": {
+        "id": e.user_id,
+        "add_roles": add,
+        "remove_roles": remove,
+
+      }
+    }
+  }
+end;

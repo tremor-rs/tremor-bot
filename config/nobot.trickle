@@ -1,0 +1,8 @@
+#! This pipeline filters requests from bots
+
+select event from in where
+  match event of
+    case %{author ~= %{bot == true}} => false
+    default => true
+  end
+into out;

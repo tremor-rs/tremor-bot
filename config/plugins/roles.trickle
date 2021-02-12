@@ -1,0 +1,17 @@
+#! This handles role selection
+use discord::guild;
+use config as c;
+
+select guild::add_roles(event.AddReaction, [c::get_role(event.AddReaction.emoji.name)]) from in where
+  match event of
+    case %{AddReaction ~= %{message_id == c::reaction_msg(), emoji ~= %{present name}}} => c::valid_role(event.AddReaction.emoji.name)
+    default => false
+  end
+into out;
+
+select guild::remove_roles(event.RemoveReaction, [c::get_role(event.RemoveReaction.emoji.name)]) from in where
+  match event of
+    case %{RemoveReaction ~= %{message_id == c::reaction_msg(), emoji ~= %{present name}}} => c::valid_role(event.RemoveReaction.emoji.name)
+    default => false
+  end
+into out;

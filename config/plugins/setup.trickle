@@ -1,0 +1,29 @@
+#! setup command
+
+select {
+  "message": {
+    "channel_id": event.channel_id,
+    "send":{
+      "embed": {
+        "colour": 0x00FF00,
+        "description": "Please read the Cod of Conduct and accept it by clicking the ✅ under the message.\n\nIn addition we have eome notification roles you can pick to get notified on different topics:\n\n - 🔧 <@&808995606240165938> - We will tag this in news relevant for anyone who contributes or wishes to contribute to tremor.\n  - 🏫 <@&808995543497703444> - We will tag this role into anyone interested in metorships, either as mentor or mentee.\n  - 👷 <@&808995580658712601> - We will tag this role in any news relevant for users that deploy tremor.",
+        "fields": [
+          {"name": "1", "value": "We are committed to providing a friendly, safe and welcoming environment for all, regardless of level of experience, gender identity and expression, sexual orientation, disability, personal appearance, body size, race, ethnicity, age, religion, nationality, or other similar characteristic."},
+          {"name": "2", "value": "On tremor-chat, please avoid using overtly sexual nicknames or other nicknames that might detract from a friendly, safe and welcoming environment for all."},
+          {"name": "3", "value": "Please be kind and courteous. Theres no need to be mean or rude."},
+          {"name": "4", "value": "Respect that people have differences of opinion and that every design or implementation choice carries a trade-off and numerous costs. There is seldom a right answer."},
+          {"name": "5", "value": "Please keep unstructured critique to a minimum. If you have solid ideas you want to experiment with, make a fork and see how it works."},
+          {"name": "6", "value": "We will exclude you from interaction if you insult, demean or harass anyone. That is not welcome behavior. We interpret the term 'harassment' as including the definition in the [Citizen Code of Conduct](https://bit.ly/citizencodeofconduct); if you have any lack of clarity about what might be included in that concept, please read their definition. In particular, we dont tolerate behavior that excludes people in socially marginalized groups."},
+          {"name": "7", "value": "Private harassment is also unacceptable. No matter who you are, if you feel you have been or are being harassed or made uncomfortable by a community member, please contact one of the channel ops or any of the Tremor moderation team immediately. Whether you're a regular contributor or a newcomer, we care about making this community a safe place for you and we've got your back."},
+          {"name": "8", "value": "Likewise any spamming, trolling, flaming, baiting or other attention-stealing behavior is not welcome."},
+        ],
+      },
+      "reactions": ["✅", "🔧", "🏫", "👷"]
+    }
+  }
+} from in where
+  match event of
+    case %{content == "tr!setup"} => true
+    default => false
+  end
+into out;
