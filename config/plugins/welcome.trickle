@@ -3,7 +3,7 @@ use config as c;
 
 select {
   "message": {
-    "channel_id": c::welcome_channel(),
+    "channel_id": c::welcome_channel,
     "send":{
       "content": "<@#{event.`MemberAddition`.new_member.user.id}>, welcome to our community! We're glad to have you, if you need anything just ask.",
     }

@@ -1,4 +1,7 @@
 #! setup command
+use std::record;
+use std::array;
+use config as c;
 
 select {
   "message": {
@@ -10,9 +13,9 @@ select {
 Please read the Cod of Conduct and accept it by clicking the ✅ under the message.
 
 In addition we have eome notification roles you can pick to get notified on different topics:
-  - 🔧 <@&808995606240165938> - We will tag this in news relevant for anyone who contributes or wishes to contribute to tremor.
-  - 🏫 <@&808995543497703444> - We will tag this role into anyone interested in metorships, either as mentor or mentee.
-  - 👷 <@&808995580658712601> - We will tag this role in any news relevant for users that deploy tremor.
+  - 🔧 <@&000000000000000000> - We will tag this in news relevant for anyone who contributes or wishes to contribute to tremor.
+  - 🏫 <@&000000000000000000> - We will tag this role into anyone interested in metorships, either as mentor or mentee.
+  - 👷 <@&000000000000000000> - We will tag this role in any news relevant for users that deploy tremor.
 """,
         "fields": [
           {"name": "1", "value": "We are committed to providing a friendly, safe and welcoming environment for all, regardless of level of experience, gender identity and expression, sexual orientation, disability, personal appearance, body size, race, ethnicity, age, religion, nationality, or other similar characteristic."},
@@ -23,10 +26,10 @@ In addition we have eome notification roles you can pick to get notified on diff
           {"name": "6", "value": "We will exclude you from interaction if you insult, demean or harass anyone. That is not welcome behavior. We interpret the term 'harassment' as including the definition in the [Citizen Code of Conduct](https://bit.ly/citizencodeofconduct); if you have any lack of clarity about what might be included in that concept, please read their definition. In particular, we dont tolerate behavior that excludes people in socially marginalized groups."},
           {"name": "7", "value": "Private harassment is also unacceptable. No matter who you are, if you feel you have been or are being harassed or made uncomfortable by a community member, please contact one of the channel ops or any of the Tremor moderation team immediately. Whether you're a regular contributor or a newcomer, we care about making this community a safe place for you and we've got your back."},
           {"name": "8", "value": "Likewise any spamming, trolling, flaming, baiting or other attention-stealing behavior is not welcome."},
-          {"name": "Contact", "value": "Please contact the <@&...> if there are issues."}
+          {"name": "Contact", "value": "Please contact the <@&000000000000000000> if there are issues."}
         ],
       },
-      "reactions": ["✅", "🔧", "🏫", "👷"]
+      "reactions": array::push(record::keys(c::roles), "✅")
     }
   }
 } from in where

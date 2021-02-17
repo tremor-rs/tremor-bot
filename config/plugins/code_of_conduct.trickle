@@ -3,22 +3,22 @@
 use discord::guild;
 use config as c;
 
-select guild::add_remove_roles(event.AddReaction, [c::accepted_role()], [c::not_accepted_role()]) from in where
+select guild::add_remove_roles(event.AddReaction, [c::accepted_role], [c::not_accepted_role]) from in where
   match event of
-    case %{AddReaction ~= %{message_id == c::code_of_conduct_msg(), emoji ~= %{name == "✅"}}} => true
+    case %{AddReaction ~= %{message_id == c::code_of_conduct_msg, emoji ~= %{name == "✅"}}} => true
     default => false
   end
 into out;
 
-select guild::add_remove_roles(event.RemoveReaction, [c::not_accepted_role()], [c::accepted_role()]) from in where
+select guild::add_remove_roles(event.RemoveReaction, [c::not_accepted_role], [c::accepted_role]) from in where
   match event of
-    case %{RemoveReaction ~= %{message_id == c::code_of_conduct_msg(), emoji ~= %{name == "✅"}}} => true
+    case %{RemoveReaction ~= %{message_id == c::code_of_conduct_msg, emoji ~= %{name == "✅"}}} => true
     default => false
   end
 into out;
 
 # Add roles to new members to the not accepted roles
-select guild::add_roles({"guild_id": event.`MemberAddition`.guild_id, "user_id": event.`MemberAddition`.new_member.user.id}, [c::not_accepted_role()]) from in where
+select guild::add_roles({"guild_id": event.`MemberAddition`.guild_id, "user_id": event.`MemberAddition`.new_member.user.id}, [c::not_accepted_role]) from in where
   match event of
   case %{present MemberAddition} => true
     default => false
