@@ -4,8 +4,6 @@ This repository contains the configuration of tremor's discord bot.
 
 While this is a somewhat unusual use case it also nicely showcases how flexible tremor is.
 
-Note this requires the discrod connector, right now that it is only available in custom builds of the `discord-connector` branch in tremor.
-
 ## Setup
 
 To set up the bot copy `config/00_source.yaml.example` to `config/00_source.yaml` and add the `token` from the [discord app developer page](https://discord.com/developers/applications).
