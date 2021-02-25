@@ -10,7 +10,7 @@ select {
       "embed": {
         "colour": 0x00FF00,
         "description": """
-Please read the Cod of Conduct and accept it by clicking the ✅ under the message.
+Please read the Code of Conduct and accept it by clicking the ✅ under the message.
 
 In addition we have eome notification roles you can pick to get notified on different topics:
   - 🔧 <@&000000000000000000> - We will tag this in news relevant for anyone who contributes or wishes to contribute to tremor.
