@@ -13,7 +13,7 @@ into out;
 # remove a role when an reaction was removed
 select guild::remove_roles(event.RemoveReaction, [c::roles[event.RemoveReaction.emoji.name]]) from in where
   match event of
-    case %{RemoveReaction ~= %{message_id == c::reaction_msg, emoji ~= %{present name}}} => c::roles[event.RemoveReaction.emoji.name]
+    case %{RemoveReaction ~= %{message_id == c::reaction_msg, emoji ~= %{present name}}} => present c::roles[event.RemoveReaction.emoji.name]
     default => false
   end
 into out;
