@@ -20,3 +20,6 @@ const not_accepted_role = 000000000000000000;
 
 ## The channel welcome messages are sent to
 const welcome_channel = 000000000000000000;
+
+## Channel the code of conduct is hosted in.
+const coc_channel = 000000000000000000;
