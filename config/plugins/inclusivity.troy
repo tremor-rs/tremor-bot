@@ -1,0 +1,20 @@
+
+define pipeline discord_plugin
+pipeline
+
+  select {
+    "message": {
+      "channel_id": event.channel_id,
+      "send":{
+        "reference_message": event.id,
+        "content": "Hey <@#{event.author.id}> this is an inclusive community. There are some nice alternatives to `guys`, perhaps `y'all`, `folks` or `friends` would be better?"
+      }
+    }
+  } from in where
+    match event of
+      case %{content ~= glob|*guys*|} => true
+      default => false
+    end
+  into out;
+end;
+

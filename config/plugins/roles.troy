@@ -1,0 +1,23 @@
+define pipeline discord_plugin
+pipeline
+  # This handles role selection
+  use discord::guild;
+  use config;
+
+  # add a role when an reaction was added
+  select guild::add_roles(event.AddReaction, [config::roles[event.AddReaction.emoji.name]]) from in where
+    match event of
+      case %{AddReaction ~= %{message_id == config::reaction_msg, emoji ~= %{present name}}} => present config::roles[event.AddReaction.emoji.name]
+      default => false
+    end
+  into out;
+
+  # remove a role when an reaction was removed
+  select guild::remove_roles(event.RemoveReaction, [config::roles[event.RemoveReaction.emoji.name]]) from in where
+    match event of
+      case %{RemoveReaction ~= %{message_id == config::reaction_msg, emoji ~= %{present name}}} => present config::roles[event.RemoveReaction.emoji.name]
+      default => false
+    end
+  into out;
+end;
+

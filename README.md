@@ -6,7 +6,7 @@ While this is a somewhat unusual use case it also nicely showcases how flexible 
 
 ## Setup
 
-To set up the bot copy `config/00_source.yaml.example` to `config/00_source.yaml` and add the `token` from the [discord app developer page](https://discord.com/developers/applications).
+To set up the bot copy `config/discord.troy.example` to `config/discord.troy` and add the `token` from the [discord app developer page](https://discord.com/developers/applications).
 
 ## Configuration
 

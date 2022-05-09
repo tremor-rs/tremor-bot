@@ -1,0 +1,80 @@
+define flow discord_bot
+flow
+  use troy::connectors;
+  use troy::pipelines;
+  use plugins;
+  use nobot;
+
+  define connector discord from discord
+  args
+    token = "Replace me with an authentic Discord Bot token"
+  with
+    config = {
+      "token": args.token,
+      "intents": [
+        "Guilds",
+        "GuildMembers",
+        # "GuildBans",
+        # "GuildEmojis",
+        # "GuildIntegrations",
+        # "GuildWebHooks",
+        # "GuildInvites",
+        # "GuildVoiceStates",
+        "GuildMessages",
+        "GuildMessageReactions",
+        # "GuildMessageTyping",
+        # "DirectMessages",
+        # "DirectMessageReactions",
+        # "DirectMessageTyping",
+        # "NonPrivileged",
+        # "All"      
+      ]
+    }
+  end;
+
+  create connector discord from discord;
+  create pipeline nobot from nobot::nobot;
+
+  # plugins
+  create pipeline welcome from plugins::welcome::discord_plugin;
+  create pipeline code_of_conduct from plugins::code_of_conduct::discord_plugin;
+  create pipeline inclusivity from plugins::inclusivity::discord_plugin;
+  create pipeline jokes from plugins::jokes::discord_plugin;
+  create pipeline roles from plugins::roles::discord_plugin;
+  create pipeline setup from plugins::setup::discord_plugin;
+
+  # for debugging
+  create pipeline debug from pipelines::passthrough;
+  create connector console from connectors::console;
+  connect /pipeline/debug to /connector/console; # debug
+
+  connect /connector/discord to /pipeline/nobot;
+  connect /connector/discord to /pipeline/debug; # debug
+
+  connect /pipeline/nobot to /pipeline/setup;
+  connect /pipeline/setup to /connector/discord;
+  connect /pipeline/setup to /pipeline/debug; # debug
+
+  connect /pipeline/nobot to /pipeline/welcome;
+  connect /pipeline/welcome to /connector/discord;
+  connect /pipeline/welcome to /pipeline/debug; # debug
+
+  connect /pipeline/nobot to /pipeline/code_of_conduct;
+  connect /pipeline/code_of_conduct to /connector/discord;
+  connect /pipeline/code_of_conduct to /pipeline/debug; # debug
+
+  connect /pipeline/nobot to /pipeline/roles;
+  connect /pipeline/roles to /connector/discord;
+  connect /pipeline/roles to /pipeline/debug; # debug
+
+  connect /pipeline/nobot to /pipeline/inclusivity;
+  connect /pipeline/inclusivity to /connector/discord;
+  connect /pipeline/inclusivity to /pipeline/debug; # debug
+
+  connect /pipeline/nobot to /pipeline/jokes;
+  connect /pipeline/jokes to /connector/discord;
+  connect /pipeline/jokes to /pipeline/debug; # debug
+  
+end;
+
+deploy flow discord_bot;

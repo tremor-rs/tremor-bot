@@ -1,0 +1,6 @@
+use plugins::code_of_conduct;
+use plugins::welcome;
+use plugins::inclusivity;
+use plugins::jokes;
+use plugins::roles;
+use plugins::setup;
