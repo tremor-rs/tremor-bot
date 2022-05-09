@@ -1,4 +1,6 @@
 define flow discord_bot
+args
+  token
 flow
   use troy::connectors;
   use troy::pipelines;
@@ -7,7 +9,7 @@ flow
 
   define connector discord from discord
   args
-    token = "Replace me with an authentic Discord Bot token"
+    token
   with
     config = {
       "token": args.token,
@@ -26,13 +28,17 @@ flow
         # "DirectMessages",
         # "DirectMessageReactions",
         # "DirectMessageTyping",
+        MessageContent,
+        # ScheduledEvents,
         # "NonPrivileged",
         # "All"      
       ]
     }
   end;
 
-  create connector discord from discord;
+  create connector discord from discord with
+    token = args.token
+  end;
   create pipeline nobot from nobot::nobot;
 
   # plugins
@@ -77,4 +83,6 @@ flow
   
 end;
 
-deploy flow discord_bot;
+deploy flow discord_bot with
+  token = "Replace me with an authentic Discord Bot token"
+end;
