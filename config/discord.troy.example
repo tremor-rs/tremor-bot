@@ -2,8 +2,8 @@ define flow discord_bot
 args
   token
 flow
-  use troy::connectors;
-  use troy::pipelines;
+  use tremor::connectors;
+  use tremor::pipelines;
   use plugins;
   use nobot;
 
@@ -28,7 +28,7 @@ flow
         # "DirectMessages",
         # "DirectMessageReactions",
         # "DirectMessageTyping",
-        MessageContent,
+        "MessageContent",
         # ScheduledEvents,
         # "NonPrivileged",
         # "All"      
