@@ -1,3 +1,4 @@
 lib/config.tremor
-config/plugins/setup.trickle
-config/00_source.yaml
+config/plugins/setup.troy
+config/discord.troy
+.vscode
