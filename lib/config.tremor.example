@@ -1,25 +1,25 @@
 # Fill this with the emoji -> RoleID mapping
 const roles = {
-  "🔧": 000000000000000000,
-  "🏫": 000000000000000000,
-  "👷": 000000000000000000,
+  "🔧": "000000000000000000",
+  "🏫": "000000000000000000",
+  "👷": "000000000000000000",
 };
 
 ## Fill this with the message Id you want to react to
-const reaction_msg = 000000000000000000;
+const reaction_msg = "000000000000000000";
 
 ## Fill this with the role that displays the code of conduct, it defaults
 ## to the same as `reaction_msg()`
-const code_of_conduct_msg = 000000000000000000;
+const code_of_conduct_msg = "000000000000000000";
 
 ## Fill this with the role for people who accepted the code of conduct
-const accepted_role = 000000000000000000;
+const accepted_role = "000000000000000000";
 
 ## Fill this with the role for people who have not yet accepted the code of conduct
-const not_accepted_role = 000000000000000000;
+const not_accepted_role = "000000000000000000";
 
 ## The channel welcome messages are sent to
-const welcome_channel = 000000000000000000;
+const welcome_channel = "000000000000000000";
 
 ## Channel the code of conduct is hosted in.
-const coc_channel = 000000000000000000;
+const coc_channel = "000000000000000000";
