@@ -20,7 +20,7 @@ pipeline
   into out;
 
   # Add roles to new members to the not accepted roles
-  select guild::add_roles({"guild_id": event.`MemberAddition`.guild_id, "user_id": event.`MemberAddition`.new_member.user.id}, [config::not_accepted_role]) from in where
+  select guild::add_roles({"guild_id": event.`MemberAddition`.new_member.guild_id, "user_id": event.`MemberAddition`.new_member.user.id}, [config::not_accepted_role]) from in where
     match event of
     case %{present MemberAddition} => true
       default => false
